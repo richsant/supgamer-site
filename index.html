@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>supGamer - Find Your Perfect Squad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Outfit', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .bg-glow {
+            position: fixed;
+            top: -40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(124, 58, 237, 0.03) 40%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-glow-bottom {
+            position: fixed;
+            bottom: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .logo-text {
+            font-size: clamp(3.5rem, 10vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 40%, #6d28d9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 3px;
+            text-transform: lowercase;
+            animation: fadeInUp 0.8s ease-out 0.15s both;
+        }
+
+        .divider {
+            width: 40px;
+            height: 2px;
+            background: rgba(124, 58, 237, 0.4);
+            margin: 2.5rem auto;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .coming-soon {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.25);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out 0.55s both;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.35);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #a78bfa;
+        }
+
+        .footer-email {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-email a {
+            color: rgba(167, 139, 250, 0.5);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-email a:hover {
+            color: #a78bfa;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+    <div class="bg-glow-bottom"></div>
+
+    <main>
+        <h1 class="logo-text">supGamer</h1>
+        <p class="tagline">find your perfect squad.</p>
+        <div class="divider"></div>
+        <p class="coming-soon">Coming Soon</p>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms & Conditions</a>
+            <a href="/refunds">Refund Policy</a>
+        </div>
+        <p class="footer-email"><a href="mailto:support@supgamer.app">support@supgamer.app</a></p>
+    </footer>
+</body>
+</html>
