@@ -17,7 +17,7 @@
             font-family: 'Outfit', sans-serif;
             background: #0a0a0f;
             color: #fff;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         .bg-glow {
@@ -49,6 +49,7 @@
             z-index: 1;
             text-align: center;
             padding: 2rem;
+            max-width: 600px;
         }
 
         .logo-text {
@@ -80,13 +81,59 @@
             animation: fadeInUp 0.8s ease-out 0.3s both;
         }
 
-        .coming-soon {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.25);
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-bottom: 3rem;
+        .sub-tagline {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.55);
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
             animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .about-toggle {
+            background: none;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            color: rgba(167, 139, 250, 0.8);
+            padding: 0.6rem 1.4rem;
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+
+        .about-toggle:hover {
+            border-color: rgba(124, 58, 237, 0.7);
+            color: #a78bfa;
+            background: rgba(124, 58, 237, 0.08);
+        }
+
+        .about-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, margin-top 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+            margin-top: 0;
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .about-content.open {
+            max-height: 600px;
+            margin-top: 1.8rem;
+            opacity: 1;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+        }
+
+        .about-content p:last-child {
+            margin-bottom: 0;
         }
 
         footer {
@@ -94,7 +141,8 @@
             z-index: 1;
             padding: 2rem;
             text-align: center;
-            animation: fadeInUp 0.8s ease-out 0.55s both;
+            animation: fadeInUp 0.8s ease-out 0.65s both;
+            max-width: 700px;
         }
 
         .footer-links {
@@ -133,6 +181,31 @@
             color: #a78bfa;
         }
 
+        .footer-business {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            margin-top: 0.8rem;
+        }
+
+        .footer-sms {
+            color: rgba(255, 255, 255, 0.22);
+            font-size: 0.7rem;
+            letter-spacing: 0.5px;
+            margin-top: 1.2rem;
+            line-height: 1.6;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-meta {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -153,7 +226,12 @@
         <h1 class="logo-text">supGamer</h1>
         <p class="tagline">find your perfect squad.</p>
         <div class="divider"></div>
-        <p class="coming-soon">Coming Soon</p>
+        <p class="sub-tagline">matchmaking, but for gamers.</p>
+        <button class="about-toggle" onclick="toggleAbout()" aria-expanded="false" aria-controls="about-content">About</button>
+        <div class="about-content" id="about-content">
+            <p>supGamer is a mobile app that helps players find compatible teammates across every game, platform, and region. Swipe-based matchmaking powered by a proprietary compatibility algorithm that considers your favorite games, skill tier, schedule, timezone, communication style, and more.</p>
+            <p>Built for competitive players, casual squads, and everyone in between. No more trash teammates, no more silent lobbies, no more solo queue regret. Just gamers who actually fit your vibe.</p>
+        </div>
     </main>
 
     <footer>
@@ -161,9 +239,22 @@
             <a href="/privacy">Privacy Policy</a>
             <a href="/terms">Terms & Conditions</a>
             <a href="/refunds">Refund Policy</a>
+            <a href="/support">Support</a>
         </div>
         <p class="footer-email"><a href="mailto:support@supgamer.app">support@supgamer.app</a></p>
-        <p class="footer-email" style="margin-top: 0.8rem;">Patent Pending</p>
+        <p class="footer-business">supGamer LLC &middot; Cocoa, FL</p>
+        <p class="footer-sms">supGamer uses SMS to send account verification codes to users who provide their phone number during sign-up. Message and data rates may apply. Reply STOP at any time to opt out.</p>
+        <p class="footer-meta">Patent Pending</p>
     </footer>
+
+    <script>
+        function toggleAbout() {
+            const content = document.getElementById('about-content');
+            const button = document.querySelector('.about-toggle');
+            const isOpen = content.classList.toggle('open');
+            button.setAttribute('aria-expanded', isOpen);
+            button.textContent = isOpen ? 'Close' : 'About';
+        }
+    </script>
 </body>
 </html>
