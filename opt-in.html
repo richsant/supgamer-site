@@ -4,48 +4,225 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMS Opt-In - supGamer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 700px;
-            margin: 40px auto;
-            padding: 0 20px;
-            color: #595959;
-            line-height: 1.6;
-            background: #fff;
+            min-height: 100vh;
+            font-family: 'Outfit', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            line-height: 1.7;
         }
-        h1 { color: #000; font-size: 26px; }
-        h2 { color: #000; font-size: 19px; }
-        p { font-size: 14px; }
-        img {
+
+        .bg-glow {
+            position: fixed;
+            top: -40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(124, 58, 237, 0.03) 40%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 40%, #6d28d9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.3px;
+        }
+
+        p, li {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
+
+        strong {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        a {
+            color: #a78bfa;
+            text-decoration: none;
+            border-bottom: 0.5px solid rgba(167, 139, 250, 0.3);
+            transition: border-color 0.2s ease;
+        }
+
+        a:hover {
+            border-bottom-color: #a78bfa;
+        }
+
+        .screenshot-wrapper {
+            margin: 1.5rem 0 2rem;
+            padding: 1rem;
+            background: rgba(124, 58, 237, 0.05);
+            border: 0.5px solid rgba(124, 58, 237, 0.2);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .screenshot-wrapper img {
             max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
+            max-height: 600px;
             border-radius: 8px;
-            margin: 20px 0;
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .caption {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 0.75rem;
+            margin-bottom: 0;
+            letter-spacing: 0.3px;
+        }
+
+        .info-box {
+            background: rgba(124, 58, 237, 0.05);
+            border: 0.5px solid rgba(124, 58, 237, 0.2);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .field-label {
+            color: rgba(167, 139, 250, 0.9);
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
             display: block;
         }
-        a { color: #3030F1; }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        footer a {
+            color: rgba(167, 139, 250, 0.6);
+            border-bottom: none;
+        }
     </style>
 </head>
 <body>
-    <h1>SMS Opt-In Consent</h1>
-    <p><strong>supGamer LLC</strong></p>
+    <div class="bg-glow"></div>
 
-    <h2>How Users Consent to Receive SMS</h2>
-    <p>During account registration in the supGamer mobile app, users voluntarily provide their phone number. Upon entering their phone number and requesting a verification code, users consent to receive one-time SMS verification codes (OTP) to confirm their identity. OTP codes may be sent during account registration, login, changing authentication methods (email or phone), and account deletion confirmation. No marketing, promotional, or recurring messages are sent. SMS is used exclusively for authentication and account security purposes.</p>
+    <main>
+        <h1>SMS Opt-In</h1>
+        <p class="subtitle">supGamer LLC</p>
 
-    <h2>Registration Screen</h2>
-    <p>The following screenshot shows the account creation screen where users enter their phone number and opt in to receive a verification code via SMS:</p>
-    <img src="https://supgamer.app/opt-in.png" alt="supGamer registration screen showing phone number entry for SMS verification">
+        <h2>How users consent to receive SMS</h2>
+        <p>During account registration in the supGamer mobile app, providing a phone number is optional &mdash; users can sign up with email instead. If a user chooses to provide a phone number, they must take an explicit affirmative action to consent to SMS messaging before their account can be created.</p>
 
-    <h2>Message Details</h2>
-    <p><strong>Message frequency:</strong> One-time per authentication event (registration, login, account changes, or account deletion).</p>
-    <p><strong>Sample message:</strong> "Your supGamer verification code is: 123456"</p>
-    <p><strong>Opt-out:</strong> Users can stop receiving SMS verification codes by not requesting a code or by deleting their account.</p>
+        <p>The consent flow works as follows:</p>
+        <ul>
+            <li>The user enters their phone number in the registration form.</li>
+            <li>Once a complete 10-digit number is entered, an SMS consent block appears below the phone field.</li>
+            <li>The block displays explicit disclosure language describing what messages will be sent, message frequency, the opt-out method, and links to the Privacy Policy and Terms &amp; Conditions.</li>
+            <li>An unchecked checkbox is shown with the label: <em>&ldquo;I agree to receive SMS verification codes from supGamer LLC at the number above.&rdquo;</em></li>
+            <li>The user must tap the checkbox to consent. The &ldquo;continue&rdquo; button will not advance the form until the box is checked.</li>
+            <li>After the user proceeds, a one-time SMS verification code is sent to the provided number.</li>
+        </ul>
 
-    <h2>Contact</h2>
-    <p>For questions about our SMS practices, contact us at <a href="mailto:support@supgamer.app">support@supgamer.app</a>.</p>
-    <p>View our <a href="https://supgamer.app/privacy">Privacy Policy</a> for more information about how we handle your data.</p>
+        <p>Users who sign up with email do not see the SMS consent block and do not receive any SMS messages.</p>
+
+        <h2>Registration screen</h2>
+        <p>The screenshot below shows the account creation screen with the SMS consent block visible after a phone number has been entered:</p>
+
+        <div class="screenshot-wrapper">
+            <img src="https://supgamer.app/opt-in.png" alt="supGamer registration screen showing the SMS consent block with disclosure text and unchecked consent checkbox">
+            <p class="caption">Account creation screen with SMS consent block (appears when phone number is entered)</p>
+        </div>
+
+        <h2>Disclosure language shown to users</h2>
+        <p>The exact text displayed inside the consent block, immediately above the checkbox:</p>
+
+        <div class="info-box">
+            <p><em>&ldquo;We send SMS verification codes to confirm your phone number. Message and data rates may apply. Reply STOP to opt out. supGamer's <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms &amp; Conditions</a> apply.&rdquo;</em></p>
+        </div>
+
+        <h2>Message details</h2>
+
+        <div class="info-box">
+            <span class="field-label">Use case</span>
+            <p>Account verification only. SMS is sent to confirm the user's phone number during account registration, password reset, contact change, and account deletion confirmation.</p>
+
+            <span class="field-label">Message frequency</span>
+            <p>One message per authentication event. There are no recurring, marketing, or promotional SMS messages.</p>
+
+            <span class="field-label">Sample message</span>
+            <p><em>&ldquo;Your supGamer verification code is: 123456&rdquo;</em></p>
+
+            <span class="field-label">Opt-out method</span>
+            <p>Users may reply <strong>STOP</strong> to any SMS verification code to immediately opt out of all future SMS messages from supGamer LLC. Opt-out is processed at the carrier level and is honored permanently. Users may also opt out by removing their phone number from their account settings, or by deleting their account entirely.</p>
+
+            <span class="field-label">Help</span>
+            <p>Users may reply <strong>HELP</strong> to any SMS message for assistance, or contact <a href="mailto:support@supgamer.app">support@supgamer.app</a>.</p>
+
+            <span class="field-label">Supported regions</span>
+            <p>SMS verification is currently supported for phone numbers in the United States, Canada, and US territories (Puerto Rico, US Virgin Islands, Guam, American Samoa, Northern Mariana Islands). The application validates and rejects phone numbers from other regions during registration.</p>
+        </div>
+
+        <h2>Contact</h2>
+        <p>For questions about supGamer's SMS practices, please contact <a href="mailto:support@supgamer.app">support@supgamer.app</a>.</p>
+
+        <p>For information about how we collect, store, and use your data, see our <a href="/privacy">Privacy Policy</a>.</p>
+
+        <footer>
+            <p><a href="/">supgamer.app</a> &middot; supGamer LLC &middot; Cocoa, FL</p>
+        </footer>
+    </main>
 </body>
 </html>
