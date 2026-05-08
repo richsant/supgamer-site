@@ -174,30 +174,38 @@
         <p class="subtitle">supGamer LLC</p>
 
         <h2>How users consent to receive SMS</h2>
-        <p>During account registration in the supGamer mobile app, providing a phone number is optional &mdash; users can sign up with email instead. If a user chooses to provide a phone number, they must take an explicit affirmative action to consent to SMS messaging before their account can be created.</p>
+        <p>Providing a phone number is optional throughout the supGamer app — users can sign up and operate the app entirely with email instead. Whenever a phone number is collected (during initial registration <em>or</em> when a user later adds or changes their phone number in account settings), the user must take an explicit affirmative action to consent to SMS messaging before the change is accepted.</p>
 
         <p>The consent flow works as follows:</p>
         <ul>
-            <li>The user enters their phone number in the registration form.</li>
-            <li>Once a complete 10-digit number is entered, an SMS consent block appears below the phone field.</li>
+            <li>The user enters a phone number in either the registration form (new account) or the account-settings change-phone sheet (existing account).</li>
+            <li>Once a complete, valid 10-digit US, Canadian, or US-territory number is entered, an SMS consent block appears below the phone field.</li>
             <li>The block displays explicit disclosure language describing what messages will be sent, message frequency, the opt-out method, and links to the Privacy Policy and Terms &amp; Conditions.</li>
             <li>An unchecked checkbox is shown with the label: <em>&ldquo;I agree to receive SMS verification codes from supGamer LLC at the number above.&rdquo;</em></li>
-            <li>The user must tap the checkbox to consent. The &ldquo;continue&rdquo; button will not advance the form until the box is checked.</li>
-            <li>After the user proceeds, a one-time SMS verification code is sent to the provided number.</li>
+            <li>The user must tap the checkbox to consent. The submit button (&ldquo;continue&rdquo; on signup, &ldquo;send verification code&rdquo; in settings) will not advance the form until the box is checked.</li>
+            <li>After the user proceeds, a one-time SMS verification code is sent to the provided number. The phone number is only persisted to the user's account once that code is verified.</li>
         </ul>
 
-        <p>Users who sign up with email do not see the SMS consent block and do not receive any SMS messages.</p>
+        <p>Users who sign up with email only do not see the SMS consent block and never receive any SMS messages. Users who later remove a phone number from their account also do not need to consent (consent is required at the point of collection only).</p>
 
-        <h2>Registration screen</h2>
+        <h2>Registration screen (new accounts)</h2>
         <p>The screenshot below shows the account creation screen with the SMS consent block visible after a phone number has been entered:</p>
 
         <div class="screenshot-wrapper">
-            <img src="https://supgamer.app/opt-in.png" alt="supGamer registration screen showing the SMS consent block with disclosure text and unchecked consent checkbox">
-            <p class="caption">Account creation screen with SMS consent block (appears when phone number is entered)</p>
+            <img src="https://supgamer.app/opt-in.png" alt="supGamer account creation screen showing the SMS consent block with disclosure text and unchecked consent checkbox">
+            <p class="caption">Account creation — SMS consent block (appears when phone number is entered)</p>
+        </div>
+
+        <h2>Account settings (existing accounts adding or changing a phone)</h2>
+        <p>Existing users who later add or change a phone number in their account settings see the same consent block before the verification code is sent:</p>
+
+        <div class="screenshot-wrapper">
+            <img src="https://supgamer.app/opt-in-settings.png" alt="supGamer account settings change-phone sheet showing the SMS consent block with disclosure text and unchecked consent checkbox">
+            <p class="caption">Account settings — change-phone sheet with the same consent block</p>
         </div>
 
         <h2>Disclosure language shown to users</h2>
-        <p>The exact text displayed inside the consent block, immediately above the checkbox:</p>
+        <p>The exact text displayed inside the consent block, immediately above the checkbox (identical at both collection points):</p>
 
         <div class="info-box">
             <p><em>&ldquo;We send SMS verification codes to confirm your phone number. Message and data rates may apply. Reply STOP to opt out. supGamer's <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms &amp; Conditions</a> apply.&rdquo;</em></p>
@@ -207,7 +215,7 @@
 
         <div class="info-box">
             <span class="field-label">Use case</span>
-            <p>Account verification only. SMS is sent to confirm the user's phone number during account registration, password reset, contact change, and account deletion confirmation.</p>
+            <p>Account verification only. SMS is sent to confirm the user's phone number during account registration, password reset, when adding or changing a phone number in account settings, and account deletion confirmation.</p>
 
             <span class="field-label">Message frequency</span>
             <p>One message per authentication event. There are no recurring, marketing, or promotional SMS messages.</p>
