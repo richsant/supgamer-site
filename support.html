@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - supGamer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Outfit', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .bg-glow {
+            position: fixed;
+            top: -40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(124, 58, 237, 0.03) 40%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 40%, #6d28d9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+        }
+
+        .lead {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .lead a {
+            color: #a78bfa;
+            text-decoration: none;
+            border-bottom: 0.5px solid rgba(167, 139, 250, 0.3);
+        }
+
+        .lead a:hover {
+            border-bottom-color: #a78bfa;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tab {
+            flex: 1;
+            background: none;
+            border: 0.5px solid rgba(124, 58, 237, 0.25);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 0.75rem 1rem;
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab:hover {
+            color: rgba(167, 139, 250, 0.9);
+            border-color: rgba(124, 58, 237, 0.5);
+        }
+
+        .tab.active {
+            background: rgba(124, 58, 237, 0.15);
+            border-color: #a78bfa;
+            color: #a78bfa;
+        }
+
+        /* Form card */
+        .form-card {
+            background: rgba(124, 58, 237, 0.05);
+            border: 0.5px solid rgba(124, 58, 237, 0.2);
+            border-radius: 16px;
+            padding: 1.75rem;
+        }
+
+        .form-pane {
+            display: none;
+        }
+
+        .form-pane.active {
+            display: block;
+        }
+
+        .field {
+            margin-bottom: 1.25rem;
+        }
+
+        .field:last-of-type {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            color: rgba(167, 139, 250, 0.9);
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+
+        .required-mark {
+            color: rgba(255, 100, 100, 0.7);
+            margin-left: 0.25rem;
+        }
+
+        input[type="text"], input[type="email"], textarea, select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 0.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            padding: 0.7rem 0.9rem;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: rgba(167, 139, 250, 0.6);
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            font-family: inherit;
+            line-height: 1.5;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23a78bfa' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.9rem center;
+            background-size: 10px 6px;
+            padding-right: 2rem;
+        }
+
+        select option {
+            background: #1a1530;
+            color: #fff;
+        }
+
+        .char-counter {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.35);
+            text-align: right;
+            margin-top: 0.3rem;
+            letter-spacing: 0.5px;
+        }
+
+        .char-counter.over {
+            color: rgba(255, 100, 100, 0.7);
+        }
+
+        /* Honeypot — hidden from real users via CSS, never visually rendered.
+           Bots that scrape the DOM and fill every field will tick this and
+           get silently ignored by the submit handler. */
+        .honeypot {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Submit button */
+        button[type="submit"] {
+            width: 100%;
+            background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            padding: 0.85rem 1.5rem;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: opacity 0.2s ease, transform 0.05s ease;
+        }
+
+        button[type="submit"]:hover:not(:disabled) {
+            opacity: 0.92;
+        }
+
+        button[type="submit"]:active:not(:disabled) {
+            transform: scale(0.99);
+        }
+
+        button[type="submit"]:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        /* Status message */
+        .status {
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            display: none;
+        }
+
+        .status.show {
+            display: block;
+        }
+
+        .status.success {
+            background: rgba(45, 200, 150, 0.1);
+            border: 0.5px solid rgba(45, 200, 150, 0.3);
+            color: rgb(120, 230, 190);
+        }
+
+        .status.error {
+            background: rgba(255, 100, 100, 0.1);
+            border: 0.5px solid rgba(255, 100, 100, 0.3);
+            color: rgb(255, 160, 160);
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.4rem;
+        }
+
+        footer p:last-child {
+            margin-bottom: 0;
+        }
+
+        footer a {
+            color: rgba(167, 139, 250, 0.6);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #a78bfa;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <main>
+        <h1>Support</h1>
+        <p class="subtitle">supGamer LLC</p>
+        <p class="lead">Have a question or run into a bug? Send us a message — we read every one. You can also email <a href="mailto:support@supgamer.app">support@supgamer.app</a> directly.</p>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="contact" type="button">Contact us</button>
+            <button class="tab" data-tab="bug" type="button">Report a bug</button>
+        </div>
+
+        <div class="form-card">
+            <!-- Contact form -->
+            <form class="form-pane active" id="contactForm" data-type="contact" novalidate>
+                <div class="field">
+                    <label for="contact-email">Email<span class="required-mark">*</span></label>
+                    <input type="email" id="contact-email" name="email" required maxlength="60" placeholder="you@example.com" autocomplete="email">
+                </div>
+                <div class="field">
+                    <label for="contact-message">Message<span class="required-mark">*</span></label>
+                    <textarea id="contact-message" name="message" required maxlength="1000" placeholder="how can we help?" rows="5"></textarea>
+                    <div class="char-counter" id="contact-message-counter">0 / 1000</div>
+                </div>
+
+                <!-- Honeypot: hidden from users, bots fill it, we drop the submission -->
+                <div class="honeypot" aria-hidden="true">
+                    <label for="contact-website">Website</label>
+                    <input type="text" id="contact-website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <button type="submit" id="contactSubmit">Send message</button>
+                <div class="status" id="contactStatus" role="status" aria-live="polite"></div>
+            </form>
+
+            <!-- Bug report form -->
+            <form class="form-pane" id="bugForm" data-type="bug" novalidate>
+                <div class="field">
+                    <label for="bug-email">Email <span style="color: rgba(255,255,255,0.4); text-transform: none; font-weight: 400;">(optional, for follow-up)</span></label>
+                    <input type="email" id="bug-email" name="email" maxlength="60" placeholder="you@example.com" autocomplete="email">
+                </div>
+                <div class="field">
+                    <label for="bug-title">Title<span class="required-mark">*</span></label>
+                    <input type="text" id="bug-title" name="title" required maxlength="100" placeholder="short summary of the bug">
+                </div>
+                <div class="field">
+                    <label for="bug-severity">Severity</label>
+                    <select id="bug-severity" name="severity">
+                        <option value="">— select —</option>
+                        <option value="low">Low &mdash; minor annoyance</option>
+                        <option value="medium">Medium &mdash; affects normal use</option>
+                        <option value="high">High &mdash; blocks important features</option>
+                        <option value="critical">Critical &mdash; app unusable</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="bug-steps">Steps to reproduce<span class="required-mark">*</span></label>
+                    <textarea id="bug-steps" name="steps" required maxlength="1000" placeholder="1. open the app&#10;2. tap on..." rows="5"></textarea>
+                    <div class="char-counter" id="bug-steps-counter">0 / 1000</div>
+                </div>
+                <div class="field">
+                    <label for="bug-expected">Expected result <span style="color: rgba(255,255,255,0.4); text-transform: none; font-weight: 400;">(optional)</span></label>
+                    <textarea id="bug-expected" name="expected" maxlength="500" placeholder="what should have happened?" rows="3"></textarea>
+                    <div class="char-counter" id="bug-expected-counter">0 / 500</div>
+                </div>
+                <div class="field">
+                    <label for="bug-actual">Actual result <span style="color: rgba(255,255,255,0.4); text-transform: none; font-weight: 400;">(optional)</span></label>
+                    <textarea id="bug-actual" name="actual" maxlength="500" placeholder="what happened instead?" rows="3"></textarea>
+                    <div class="char-counter" id="bug-actual-counter">0 / 500</div>
+                </div>
+
+                <!-- Honeypot -->
+                <div class="honeypot" aria-hidden="true">
+                    <label for="bug-website">Website</label>
+                    <input type="text" id="bug-website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <button type="submit" id="bugSubmit">Submit bug report</button>
+                <div class="status" id="bugStatus" role="status" aria-live="polite"></div>
+            </form>
+        </div>
+
+        <footer>
+            <p><a href="/">supgamer.app</a></p>
+            <p>supGamer LLC &middot; Cocoa, FL</p>
+        </footer>
+    </main>
+
+    <script>
+        // ─── Config ──────────────────────────────────────────────────────────
+        const SUPABASE_FN_URL =
+            'https://xvbtlskidaapdaanuyjc.supabase.co/functions/v1/submit-anon-ticket';
+        const SUPABASE_PUBLISHABLE_KEY =
+            'sb_publishable_jVSBcO0gZpP1K2xS_BfBhA_4DwtX3Kw';
+
+        // ─── Tab switching ───────────────────────────────────────────────────
+        const tabs = document.querySelectorAll('.tab');
+        const panes = document.querySelectorAll('.form-pane');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.tab;
+                tabs.forEach(t => t.classList.toggle('active', t === tab));
+                panes.forEach(p => p.classList.toggle('active', p.id === target + 'Form'));
+            });
+        });
+
+        // ─── Char counters ───────────────────────────────────────────────────
+        function wireCounter(inputId, counterId, max) {
+            const el = document.getElementById(inputId);
+            const counter = document.getElementById(counterId);
+            const update = () => {
+                const len = el.value.length;
+                counter.textContent = `${len} / ${max}`;
+                counter.classList.toggle('over', len > max);
+            };
+            el.addEventListener('input', update);
+            update();
+        }
+        wireCounter('contact-message', 'contact-message-counter', 1000);
+        wireCounter('bug-steps', 'bug-steps-counter', 1000);
+        wireCounter('bug-expected', 'bug-expected-counter', 500);
+        wireCounter('bug-actual', 'bug-actual-counter', 500);
+
+        // ─── Submission ──────────────────────────────────────────────────────
+        async function submitForm(form) {
+            const type = form.dataset.type;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const statusEl = form.querySelector('.status');
+
+            // Pull fields
+            const data = {};
+            new FormData(form).forEach((value, key) => {
+                if (typeof value === 'string') data[key] = value.trim();
+            });
+
+            // Honeypot — if filled, bot. Show fake success to not tip them off.
+            if (data.website && data.website.length > 0) {
+                showStatus(statusEl, 'success', 'thanks — your message has been sent.');
+                form.reset();
+                return;
+            }
+            // Strip the honeypot before sending real data
+            delete data.website;
+
+            // Client-side required-field check (server also enforces).
+            if (type === 'contact') {
+                if (!data.email || !data.message) {
+                    showStatus(statusEl, 'error', 'please fill out email and message.');
+                    return;
+                }
+            } else {
+                if (!data.title || !data.steps) {
+                    showStatus(statusEl, 'error', 'please fill out title and steps to reproduce.');
+                    return;
+                }
+            }
+
+            // Send
+            submitBtn.disabled = true;
+            const originalLabel = submitBtn.textContent;
+            submitBtn.textContent = 'sending…';
+            statusEl.classList.remove('show');
+
+            try {
+                const res = await fetch(SUPABASE_FN_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${SUPABASE_PUBLISHABLE_KEY}`,
+                        'apikey': SUPABASE_PUBLISHABLE_KEY,
+                    },
+                    body: JSON.stringify({ type, ...data }),
+                });
+
+                if (res.ok) {
+                    showStatus(statusEl, 'success', 'thanks — your message has been sent.');
+                    form.reset();
+                    // Reset counters after form.reset()
+                    form.querySelectorAll('.char-counter').forEach(c => {
+                        const max = c.id.includes('steps') || c.id.includes('message') ? 1000 : 500;
+                        c.textContent = `0 / ${max}`;
+                        c.classList.remove('over');
+                    });
+                } else if (res.status === 429) {
+                    showStatus(statusEl, 'error', 'too many requests — please wait an hour and try again, or email support@supgamer.app directly.');
+                } else {
+                    let detail = '';
+                    try {
+                        const j = await res.json();
+                        if (j && j.error) detail = ` (${j.error})`;
+                    } catch (_) {}
+                    showStatus(statusEl, 'error', `failed to send${detail} — please try again or email us directly.`);
+                }
+            } catch (e) {
+                showStatus(statusEl, 'error', 'network error — please check your connection and try again.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalLabel;
+            }
+        }
+
+        function showStatus(el, kind, msg) {
+            el.className = `status ${kind} show`;
+            el.textContent = msg;
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', e => {
+            e.preventDefault();
+            submitForm(e.currentTarget);
+        });
+        document.getElementById('bugForm').addEventListener('submit', e => {
+            e.preventDefault();
+            submitForm(e.currentTarget);
+        });
+    </script>
+</body>
+</html>
